@@ -4,7 +4,7 @@ while leave_program != "q":
     import random
     print "This is a dice rolling program"
     print "Press enter to roll"
-    input()
+    raw_input()
     number = random.randint(1, 6)
     if number == 1:
         print "[--------------------]"
@@ -13,7 +13,7 @@ while leave_program != "q":
         print "[--------------------]"
         print "[--------------------]"
         print "Type 'q' to quit"
-        leave_program = input()
+        leave_program = raw_input()
     if number == 2:
         print "[--------------------]"
         print "[--------------------]"
@@ -21,7 +21,7 @@ while leave_program != "q":
         print "[--------------------]"
         print "[--------------------]"
         print "Type 'q' to quit"
-        leave_program = input()
+        leave_program = raw_input()
     if number == 3:
         print "[--------------------]"
         print "[---------O---------]"
@@ -29,7 +29,7 @@ while leave_program != "q":
         print "[----O--------O----]"
         print "[--------------------]"
         print "Type 'q' to quit"
-        leave_program = input()
+        leave_program = raw_input()
     if number == 4:
         print "[--------------------]"
         print "[-----O--------O---]"
@@ -37,7 +37,7 @@ while leave_program != "q":
         print "[-----O-------O----]"
         print "[--------------------]"
         print "Type 'q' to quit"
-        leave_program = input()
+        leave_program = raw_input()
     if number == 5:
         print "[--------------------]"
         print "[-----O--------O---]"
@@ -45,7 +45,7 @@ while leave_program != "q":
         print "[-----O-------O----]"
         print "[--------------------]"
         print "Type 'q' to quit"
-        leave_program = input()
+        leave_program = raw_input()
     if number == 6:
         print "[--------------------]"
         print "[---O--------O-----]"
@@ -53,4 +53,4 @@ while leave_program != "q":
         print "[---O--------O-----]"
         print "[--------------------]"
         print "Type 'q' to quit"
-        leave_program = input()
+        leave_program = raw_input()
