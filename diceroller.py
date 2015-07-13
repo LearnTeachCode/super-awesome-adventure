@@ -4,22 +4,16 @@ import random
 
 class DiceRoller(object) :
 
-
     def rollDice(self):
-                diceTypes=[d2,d4,d6,d8,d10,d20]
-                dicetype=""
-                while diceType not in diceTypes:
-                    print """
-                    Enter the type of die you would like to roll:\n* d2\n* d4\n* d6\n* d8\n* d10\n* d20
-                    """
-                    diceType = raw_input("> ")
-                    diceType = str.lower(diceType)
-                
+                print """
+                Enter the type of die you would like to roll:\n* d2\n* d4\n* d6\n* d8\n* d10\n* d20
+                """
+                diceType = raw_input("> ")
                 print "How many times would you like to roll?\n"
-                
+
                 diceRoll = raw_input("> ")
 
-                
+                diceType = str.lower(diceType)
                 diceRoll = int(diceRoll)
                 diceTotal = 0
 
