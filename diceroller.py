@@ -1,20 +1,39 @@
 #!/usr/bin/python
 
 import random
+import numbers
 
 class DiceRoller(object) :
 
+    def verifyDiceType(self):
+                diceTypes=["d2","d4","d6","d8","d10","d20"]
+                diceType=""
+                while diceType not in diceTypes:
+                    print " Enter the type of die you would like to roll: [ d2, d4, d6, d8, d10, d20] "
+                    diceType = raw_input("> ")
+                    diceType = str.lower(diceType)
+                return diceType
+
+    def numberOfRolls(self):
+        while True:
+            try:
+                print "How many times would you like to roll?\n"
+                diceRoll = int(raw_input("> "))
+            except ValueError:
+                print "Error!"
+                continue
+            else:
+                print diceRoll
+                return diceRoll
+                break
+                    
     def rollDice(self):
                 print """
                 Enter the type of die you would like to roll:\n* d2\n* d4\n* d6\n* d8\n* d10\n* d20
                 """
-                diceType = raw_input("> ")
-                print "How many times would you like to roll?\n"
-
-                diceRoll = raw_input("> ")
-
-                diceType = str.lower(diceType)
-                diceRoll = int(diceRoll)
+                diceType=self.verifyDiceType()
+                diceRoll=self.numberOfRolls()
+                
                 diceTotal = 0
 
                 while diceRoll != 0 :
