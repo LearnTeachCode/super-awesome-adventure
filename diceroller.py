@@ -57,9 +57,6 @@ class DiceRoller(object) :
                         print random.randint(1, 10)
 
                     elif diceType == 'd20' :
-                        print random.randint(1, 20)
-
-                    else :
-                        print "Your dice type was invalid. Please try again."
+                        print random.randint(1, 20)                    
 
                     diceRoll = diceRoll - 1
