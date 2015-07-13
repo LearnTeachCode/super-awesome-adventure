@@ -1,11 +1,10 @@
 #!/usr/bin/python
 
 import random
-import os
 
 class DiceRoller(object) :
 
-  
+
     def rollDice(self):
                 diceTypes=[d2,d4,d6,d8,d10,d20]
                 dicetype=""
@@ -51,35 +50,3 @@ class DiceRoller(object) :
                         print "Your dice type was invalid. Please try again."
 
                     diceRoll = diceRoll - 1
-
-    def startMenu(self) :
-
-            os.system('clear')
-
-            menuOption = -1
-
-            while menuOption != 0 :
-                print '\n' + '=' * 29
-                print "Welcome to Super Awesome Dice"
-                print '=' * 29
-                print """
-                Please make your selection:\n
-                1.) Roll Dice
-                2.) Show Totals
-                0.) Exit Program
-                """
-                menuOption = raw_input("> ")
-                menuOption = int(menuOption)
-
-                if menuOption == 1 :
-                    self.rollDice()
-                elif menuOption == 2 :
-                    pass
-                elif menuOption == 0 :
-                    print "Exiting program...\n"
-                    break
-                else :
-                    print "Please make a valid selection"
-
-runProg = DiceRoller()
-runProg.startMenu()
