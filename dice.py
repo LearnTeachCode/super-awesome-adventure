@@ -1,58 +1,80 @@
+#!/usr/bin/python
+
 import random
+import os
 
-# Function to roll default six-sided die and print the result
-def roll_die():
-	number = random.randint(1, 6)
-	if number == 1:
-		print "[--------------------]"
-		print "[--------------------]"
-		print "[---------O---------]"
-		print "[--------------------]"
-		print "[--------------------]"
-	if number == 2:
-		print "[--------------------]"
-		print "[--------------------]"
-		print "[-----O-------O----]"
-		print "[--------------------]"
-		print "[--------------------]"
-	if number == 3:
-		print "[--------------------]"
-		print "[---------O---------]"
-		print "[--------------------]"
-		print "[----O--------O----]"
-		print "[--------------------]"			
-	if number == 4:
-		print "[--------------------]"
-		print "[-----O--------O---]"
-		print "[---------------------]"
-		print "[-----O-------O----]"
-		print "[--------------------]"
-	if number == 5:
-		print "[--------------------]"
-		print "[-----O--------O---]"
-		print "[----------O--------]"
-		print "[-----O-------O----]"
-		print "[--------------------]"
-	if number == 6:
-		print "[--------------------]"
-		print "[---O--------O-----]"
-		print "[---O--------O-----]"
-		print "[---O--------O-----]"
-		print "[--------------------]"
+class DiceRoller(object) :
 
-# MAIN PROGRAM:
-leave_program = 0
-print "\nWelcome to the super awesome dice rolling program."
-while leave_program != "q":	    
-	numdice = raw_input("How many dice do you want to roll? Enter a number (Must be at least 1):\n>> ")
-	numdice = int(numdice)	
-	while numdice < 1:
-		# TODO: catch errors if user didn't enter a number!	
-		numdice = raw_input("Sorry, you can only roll 1 or more dice. Please re-enter the number of dice you want to roll:\n>> ")
-		numdice = int(numdice)	
-	rollcount = 1
-	while rollcount <= numdice:
-		print "\nRolling die #%d:" % rollcount
-		roll_die()				
-		rollcount += 1
-	leave_program = raw_input("Type 'q' to quit, or press enter to start again.\n>> ")
+
+    def rollDice(self):
+                print """
+                Enter the type of die you would like to roll:\n* d2\n* d4\n* d6\n* d8\n* d10\n* d20
+                """
+                diceType = raw_input("> ")
+                print "How many times would you like to roll?\n"
+
+                diceRoll = raw_input("> ")
+
+                diceType = str.lower(diceType)
+                diceRoll = int(diceRoll)
+                diceTotal = 0
+
+                while diceRoll != 0 :
+                    if diceType == 'd2' :
+                        coin = random.randint(1, 2)
+                        if coin == 1 :
+                            print "Heads"
+                        else :
+                            print "Tails"
+
+                    elif diceType == 'd4' :
+                        print random.randint(1, 4)
+
+                    elif diceType == 'd6' :
+                        print random.randint(1, 6)
+
+                    elif diceType == 'd8' :
+                        print random.randint(1, 8)
+
+                    elif diceType == 'd10' :
+                        print random.randint(1, 10)
+
+                    elif diceType == 'd20' :
+                        print random.randint(1, 20)
+
+                    else :
+                        print "Your dice type was invalid. Please try again."
+
+                    diceRoll = diceRoll - 1
+
+    def startMenu(self) :
+
+            os.system('clear')
+
+            menuOption = -1
+
+            while menuOption != 0 :
+                print '\n' + '=' * 29
+                print "Welcome to Super Awesome Dice"
+                print '=' * 29
+                print """
+                Please make your selection:\n
+                1.) Roll Dice
+                2.) Show Totals
+                0.) Exit Program
+                """
+                menuOption = raw_input("> ")
+                menuOption = int(menuOption)
+
+                if menuOption == 1 :
+                    self.rollDice()
+                elif menuOption == 2 :
+                    pass
+                elif menuOption == 0 :
+                    print "Exiting program...\n"
+                    break
+                else :
+                    print "Please make a valid selection"
+
+runProg = DiceRoller()
+runProg.startMenu()
