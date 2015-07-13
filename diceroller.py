@@ -27,10 +27,7 @@ class DiceRoller(object) :
                 return diceRoll
                 break
                     
-    def rollDice(self):
-                print """
-                Enter the type of die you would like to roll:\n* d2\n* d4\n* d6\n* d8\n* d10\n* d20
-                """
+    def rollDice(self):                
                 diceType=self.verifyDiceType()
                 diceRoll=self.numberOfRolls()
                 
