@@ -3,13 +3,15 @@
 import random
 import numbers
 
+results = []
+
 class DiceRoller(object) :
 
     def verifyDiceType(self):
-                diceTypes=["d2","d4","d6","d8","d10","d20"]
-                diceType=""
+                diceTypes = ["d2","d4","d6","d8","d10","d20"]
+                diceType = ""
                 while diceType not in diceTypes:
-                    print " Enter the type of die you would like to roll: [ d2, d4, d6, d8, d10, d20] "
+                    print " Enter the type of die you would like to roll: [d2, d4, d6, d8, d10, d20]\n"
                     diceType = raw_input("> ")
                     diceType = str.lower(diceType)
                 return diceType
@@ -20,17 +22,17 @@ class DiceRoller(object) :
                 print "How many times would you like to roll?\n"
                 diceRoll = int(raw_input("> "))
             except ValueError:
-                print "Error!"
+                print "Please enter a whole number."
                 continue
             else:
                 print diceRoll
                 return diceRoll
                 break
-                    
-    def rollDice(self):                
+
+    def rollDice(self):
                 diceType=self.verifyDiceType()
                 diceRoll=self.numberOfRolls()
-                
+
                 diceTotal = 0
 
                 while diceRoll != 0 :
@@ -42,7 +44,8 @@ class DiceRoller(object) :
                             print "Tails"
 
                     elif diceType == 'd4' :
-                        print random.randint(1, 4)
+                        e = random.randint(1, 4)
+                        results.append(e)
 
                     elif diceType == 'd6' :
                         print random.randint(1, 6)
@@ -54,6 +57,8 @@ class DiceRoller(object) :
                         print random.randint(1, 10)
 
                     elif diceType == 'd20' :
-                        print random.randint(1, 20)                    
+                        print random.randint(1, 20)
 
                     diceRoll = diceRoll - 1
+
+                    print results
