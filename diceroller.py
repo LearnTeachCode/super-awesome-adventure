@@ -1,46 +1,53 @@
 #!/usr/bin/python
 
 import random
+import sys
+
 
 class DiceRoller(object) :
 
-    def rollDice(self):
-                print """
-                Enter the type of die you would like to roll:\n* d2\n* d4\n* d6\n* d8\n* d10\n* d20
-                """
-                diceType = raw_input("> ")
+    def verifyDiceType(self):
+                diceTypes=["d2","d4","d6","d8","d10","d20"]
+                diceType=""
+                while diceType not in diceTypes:
+                    print " Enter the type of die you would like to roll: [ d2, d4, d6, d8, d10, d20] "
+                    diceType = raw_input("> ")
+                    diceType = str.lower(diceType)
+                return diceType
+
+    def askNumTosses(self):
+        while True:
+            try:
                 print "How many times would you like to roll?\n"
+                diceRoll = int(raw_input("> "))
+            except ValueError:
+                print "Error!"
+                continue
+            else:
+                print diceRoll
+                return diceRoll
+                break
 
-                diceRoll = raw_input("> ")
+    # def roll_n_dice(self, numSides, numTosses):
+    def roll_n_dice(self, numSides, numTosses):
 
-                diceType = str.lower(diceType)
-                diceRoll = int(diceRoll)
-                diceTotal = 0
+                '''
+                If numTosses is equal to 1, return a single number
+                Else returns a list of size = numTosses
+                '''
+                resultList = [random.randint(1, numSides) for i in range(0,numTosses)]
 
-                while diceRoll != 0 :
-                    if diceType == 'd2' :
-                        coin = random.randint(1, 2)
-                        if coin == 1 :
-                            print "Heads"
-                        else :
-                            print "Tails"
+                return resultList
 
-                    elif diceType == 'd4' :
-                        print random.randint(1, 4)
+    def rollDice(self):
+                #Take in what user input for dice type and converts the number of sides to an 'int'
+                diceTypeStr = self.verifyDiceType()
+                diceTypeInt = int(diceTypeStr[1:len(diceTypeStr)])
+                # Takes in number of dice tosses
+                numTosses = self.askNumTosses()
+                print self.roll_n_dice(diceTypeInt, numTosses)
 
-                    elif diceType == 'd6' :
-                        print random.randint(1, 6)
+if __name__ == '__main__':
 
-                    elif diceType == 'd8' :
-                        print random.randint(1, 8)
-
-                    elif diceType == 'd10' :
-                        print random.randint(1, 10)
-
-                    elif diceType == 'd20' :
-                        print random.randint(1, 20)
-
-                    else :
-                        print "Your dice type was invalid. Please try again."
-
-                    diceRoll = diceRoll - 1
+    quickroll = DiceRoller()
+    print quickroll.roll_n_dice(int(sys.argv[1]),int(sys.argv[2]))
