@@ -2,7 +2,8 @@
 
 import random
 import sys
-
+import csv
+import datetime
 
 class DiceRoller(object) :
 
@@ -40,12 +41,37 @@ class DiceRoller(object) :
                 return resultList
 
     def rollDice(self):
+                #init
+                results={}
+                flist=[]
+                fkey=0
+                
                 #Take in what user input for dice type and converts the number of sides to an 'int'
                 diceTypeStr = self.verifyDiceType()
                 diceTypeInt = int(diceTypeStr[1:len(diceTypeStr)])
+                
+                diceTotal = 0
+                diceTypeFace=0
+                diceTypeFace=diceTypeStr[1:]
+
                 # Takes in number of dice tosses
                 numTosses = self.askNumTosses()
                 print self.roll_n_dice(diceTypeInt, numTosses)
+
+
+                while numTosses != 0 :
+                    fkey += 1
+                    e =random.randint(1,int(diceTypeFace))
+                    timestamp=datetime.datetime.now()
+                    flist=[diceTypeStr,e,str(timestamp)]
+                    results[fkey]=flist
+
+                    numTosses -= 1
+
+                print results
+                saveToFile= csv.writer(open("RollResults.csv","w"))
+                for key,val in results.items():
+                    saveToFile.writerow([key,val])
 
 if __name__ == '__main__':
 
