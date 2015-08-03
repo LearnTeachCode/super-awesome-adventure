@@ -30,11 +30,18 @@ class DiceRoller(object) :
 
     # def roll_n_dice(self, numSides, numTosses):
     def roll_n_dice(self, numSides, numTosses):
-
                 '''
                 If numTosses is equal to 1, return a single number
                 Else returns a list of size = numTosses
+
+                singleToss = {
+                date: "7/15/15 "
+                type: "d20"
+                value: ""
+                }
+
                 '''
+
                 resultList = [random.randint(1, numSides) for i in range(0,numTosses)]
 
                 return resultList

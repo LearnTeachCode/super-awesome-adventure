@@ -10,7 +10,7 @@ class AppMenu(object) :
 
         menuOption = -1
         diceRoller = diceroller.DiceRoller()
-        
+
         while menuOption != 0 :
             print '\n' + '=' * 29
             print "Welcome to Super Awesome Dice"
@@ -33,4 +33,3 @@ class AppMenu(object) :
                 break
             else :
                 print "Please make a valid selection"
-
