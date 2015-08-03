@@ -69,7 +69,7 @@ class DiceRoller(object) :
                     numTosses -= 1
 
                 print results
-                saveToFile= csv.writer(open("RollResults.csv","w"))
+                saveToFile= csv.writer(open("RollResults.csv","a"))
                 for key,val in results.items():
                     saveToFile.writerow([key,val])
 
