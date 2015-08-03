@@ -2,6 +2,9 @@
 
 import random
 import numbers
+import sys
+import csv
+import datetime
 
 class DiceRoller(object) :
 
@@ -14,7 +17,7 @@ class DiceRoller(object) :
                     diceType = str.lower(diceType)
                 return diceType
 
-    def numberOfRolls(self):
+    def askNumTosses(self):
         while True:
             try:
                 print "How many times would you like to roll?\n"
@@ -26,34 +29,52 @@ class DiceRoller(object) :
                 print diceRoll
                 return diceRoll
                 break
-                    
-    def rollDice(self):                
-                diceType=self.verifyDiceType()
-                diceRoll=self.numberOfRolls()
+
+    # def roll_n_dice(self, numSides, numTosses):
+    def roll_n_dice(self, numSides, numTosses):
+
+                '''
+                If numTosses is equal to 1, return a single number
+                Else returns a list of size = numTosses
+                '''
+                resultList = [random.randint(1, numSides) for i in range(0,numTosses)]
+
+                return resultList
+
+    def rollDice(self):
+                #init
+                results={}
+                flist=[]
+                fkey=0
+                
+                #Take in what user input for dice type and converts the number of sides to an 'int'
+                diceTypeStr = self.verifyDiceType()
+                diceTypeInt = int(diceTypeStr[1:len(diceTypeStr)])
                 
                 diceTotal = 0
+                diceTypeFace=0
+                diceTypeFace=diceTypeStr[1:]
 
-                while diceRoll != 0 :
-                    if diceType == 'd2' :
-                        coin = random.randint(1, 2)
-                        if coin == 1 :
-                            print "Heads"
-                        else :
-                            print "Tails"
+                # Takes in number of dice tosses
+                numTosses = self.askNumTosses()
+                print self.roll_n_dice(diceTypeInt, numTosses)
 
-                    elif diceType == 'd4' :
-                        print random.randint(1, 4)
 
-                    elif diceType == 'd6' :
-                        print random.randint(1, 6)
+                while numTosses != 0 :
+                    fkey += 1
+                    e =random.randint(1,int(diceTypeFace))
+                    timestamp=datetime.datetime.now()
+                    flist=[diceTypeStr,e,str(timestamp)]
+                    results[fkey]=flist
 
-                    elif diceType == 'd8' :
-                        print random.randint(1, 8)
+                    numTosses -= 1
 
-                    elif diceType == 'd10' :
-                        print random.randint(1, 10)
+                print results
+                saveToFile= csv.writer(open("RollResults.csv","w"))
+                for key,val in results.items():
+                    val.insert(0, key)
+                    saveToFile.writerow(val)
 
-                    elif diceType == 'd20' :
-                        print random.randint(1, 20)                    
-
-                    diceRoll = diceRoll - 1
+if __name__ == '__main__':
+    quickroll = DiceRoller()
+    print quickroll.roll_n_dice(int(sys.argv[1]),int(sys.argv[2]))
