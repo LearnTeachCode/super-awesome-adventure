@@ -52,11 +52,11 @@ class DiceRoller(object) :
                 results={}
                 flist=[]
                 fkey=0
-                
+
                 #Take in what user input for dice type and converts the number of sides to an 'int'
                 diceTypeStr = self.verifyDiceType()
                 diceTypeInt = int(diceTypeStr[1:len(diceTypeStr)])
-                
+
                 diceTotal = 0
                 diceTypeFace=0
                 diceTypeFace=diceTypeStr[1:]
