@@ -2,6 +2,7 @@
 
 import os
 import diceroller
+import showtotals
 
 class AppMenu(object) :
     def start(self) :
@@ -11,6 +12,8 @@ class AppMenu(object) :
         menuOption = -1
         diceRoller = diceroller.DiceRoller()
 
+=======
+        showTotals = showtotals.ShowTotals()
         while menuOption != 0 :
             print '\n' + '=' * 29
             print "Welcome to Super Awesome Dice"
@@ -27,7 +30,7 @@ class AppMenu(object) :
             if menuOption == 1 :
                 diceRoller.rollDice()
             elif menuOption == 2 :
-                pass
+                showTotals.getResults()
             elif menuOption == 0 :
                 print "Exiting program...\n"
                 break

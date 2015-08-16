@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import random
+import numbers
 import sys
 import csv
 import datetime
@@ -76,11 +77,11 @@ class DiceRoller(object) :
                     numTosses -= 1
 
                 print results
-                saveToFile= csv.writer(open("RollResults.csv","w"))
+                saveToFile= csv.writer(open("RollResults.csv","a"))
                 for key,val in results.items():
-                    saveToFile.writerow([key,val])
+                    val.insert(0, key)
+                    saveToFile.writerow(val)
 
 if __name__ == '__main__':
-
     quickroll = DiceRoller()
     print quickroll.roll_n_dice(int(sys.argv[1]),int(sys.argv[2]))
